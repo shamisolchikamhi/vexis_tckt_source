@@ -46,7 +46,7 @@ def trigger_query(transfer_config_name):
         job_id = run.name.split("/")[-1]
         print(check_job_status(job_id))
 
-# def shami_test_schedule():
+def shami_test_schedule():
     # Transfer config resource name
-transfer_config_name = "projects/266163061237/locations/us/transferConfigs/681f53f4-0000-2cfc-bda1-883d24f4f6c4"
-trigger_query(transfer_config_name)
+    transfer_config_name = "projects/266163061237/locations/us/transferConfigs/681f53f4-0000-2cfc-bda1-883d24f4f6c4"
+    trigger_query(transfer_config_name)
