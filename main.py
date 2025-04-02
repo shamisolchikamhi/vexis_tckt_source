@@ -32,7 +32,8 @@ def pub_sub_message_publisher(project_id, topic, message):
 def get_job_results(job_id):
     # Fetch the job
     job = bq_client.get_job(job_id=f'scheduled_query_{job_id}')
-    return job.result()
+    result = job.result()
+    return result
 
 def trigger_query(transfer_config_name):
     # Get current UTC time as a Timestamp
@@ -49,8 +50,9 @@ def trigger_query(transfer_config_name):
     )
     for run in response.runs:
         job_id = run.name.split("/")[-1]
-        time.sleep(2)
-    return f"Job {job_id} completed, {get_job_results(job_id)}."
+        time.sleep(60)
+        output = get_job_results(job_id)
+    return f"Job {job_id} completed, {output}."
 
 
 def shami_test_schedule(event, context):
